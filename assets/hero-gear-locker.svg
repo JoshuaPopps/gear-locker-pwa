@@ -1,0 +1,44 @@
+<!-- Gear Locker hero — hand-drawn, word-free. A riding jacket on
+     a hanger, a helmet at its side, a boot at its foot.
+     Blueprint-sketch style: chrome linework on gloss black, purple
+     accent. Drawn for the app; no stock art, no text. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 240" role="img" aria-label="Riding gear line drawing">
+  <defs>
+    <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#e3e3ea"/>
+      <stop offset="48%" stop-color="#a8a8b2"/>
+      <stop offset="60%" stop-color="#f4f4f8"/>
+      <stop offset="78%" stop-color="#c6c6cf"/>
+      <stop offset="100%" stop-color="#8e8e99"/>
+    </linearGradient>
+  </defs>
+  <!-- blueprint construction lines -->
+  <line x1="430" y1="18" x2="430" y2="228" stroke="#9d6bff" stroke-width="1" stroke-dasharray="3 6" opacity=".35"/>
+  <!-- ground line with a purple segment under the jacket -->
+  <line x1="60" y1="218" x2="800" y2="218" stroke="url(#chrome)" stroke-width="2"/>
+  <line x1="330" y1="218" x2="530" y2="218" stroke="#9d6bff" stroke-width="2"/>
+  <!-- hanger hook + bar -->
+  <path d="M430 26 Q430 14 440 14 Q450 14 450 24" fill="none" stroke="url(#chrome)" stroke-width="3" stroke-linecap="round"/>
+  <line x1="430" y1="26" x2="430" y2="44" stroke="url(#chrome)" stroke-width="3" stroke-linecap="round"/>
+  <path d="M430 44 L356 64 M430 44 L504 64" stroke="url(#chrome)" stroke-width="3" stroke-linecap="round"/>
+  <!-- jacket: shoulders, sleeves, body, zipper, purple chest stripe -->
+  <path d="M356 64 Q430 52 504 64 L528 148 L500 156 L486 104 L486 206 L374 206 L374 104 L360 156 L332 148 Z"
+        fill="#101014" stroke="url(#chrome)" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M414 62 L430 78 L446 62" fill="none" stroke="url(#chrome)" stroke-width="2.5" stroke-linejoin="round"/>
+  <line x1="430" y1="78" x2="430" y2="206" stroke="url(#chrome)" stroke-width="2.5"/>
+  <line x1="388" y1="120" x2="472" y2="120" stroke="#9d6bff" stroke-width="3"/>
+  <line x1="374" y1="104" x2="486" y2="104" stroke="url(#chrome)" stroke-width="1.5" opacity=".6"/>
+  <!-- helmet, right of the jacket -->
+  <path d="M586 218 L586 168 Q586 124 630 124 Q674 124 674 168 L674 218 Z"
+        fill="#101014" stroke="url(#chrome)" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M586 168 L674 168" stroke="url(#chrome)" stroke-width="2.5"/>
+  <path d="M600 148 Q630 132 660 148" fill="none" stroke="#9d6bff" stroke-width="3" stroke-linecap="round"/>
+  <line x1="586" y1="196" x2="674" y2="196" stroke="url(#chrome)" stroke-width="1.5" opacity=".6"/>
+  <!-- boot, left of the jacket -->
+  <path d="M196 218 L196 148 Q196 138 206 138 L232 138 Q242 138 242 148 L242 178 L282 178 Q292 178 292 188 L292 206 Q292 218 280 218 Z"
+        fill="#101014" stroke="url(#chrome)" stroke-width="3" stroke-linejoin="round"/>
+  <line x1="242" y1="178" x2="242" y2="148" stroke="url(#chrome)" stroke-width="2" opacity=".6"/>
+  <line x1="206" y1="158" x2="232" y2="158" stroke="url(#chrome)" stroke-width="2" opacity=".6"/>
+  <line x1="206" y1="170" x2="232" y2="170" stroke="url(#chrome)" stroke-width="2" opacity=".6"/>
+</svg>

@@ -1,10 +1,11 @@
 /* Gear Locker service worker — app-shell cache so the locker
  * works offline in the garage. Version the cache name on release. */
-var CACHE = 'gear-locker-v1';
+var CACHE = 'gear-locker-v2';
 var ASSETS = [
   './', './index.html', './styles.css', './app.js',
   './sw-update.js', './bike-profile.js',
   './manifest.webmanifest',
+  './assets/hero-gear-locker.svg',
   './icons/icon-192.png', './icons/icon-512.png'
 ];
 
