@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="1990">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gear Locker</title>
+<meta name="description" content="Riding gear, with a home. Every jacket, helmet, glove, and boot — what it is, what size, what shape it's in, and what it cost. All typed in by you, nothing invented. Works offline, data stays on your device.">
+<meta name="theme-color" content="#070709">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;600;700&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="top">
+  <p class="eyebrow">shop log &mdash; popps&rsquo;s garage</p>
+  <h1>Gear Locker</h1>
+  <p class="tagline">Every jacket, helmet, glove, and boot — what it is, what size, and what shape it&rsquo;s in.</p>
+</header>
+
+<main>
+  <!-- LOCKER -->
+  <section id="view-locker" class="view active">
+    <div class="grid">
+      <label>Bike
+        <select id="locker-bike"></select>
+      </label>
+      <label>Type
+        <select id="locker-type"></select>
+      </label>
+    </div>
+    <label>Search
+      <input type="text" id="locker-search" placeholder="name or brand — e.g. Icon, Chippewa">
+    </label>
+    <div id="gear-list"></div>
+
+    <h2 id="form-heading">Add gear</h2>
+    <form id="gear-form" class="card">
+      <div class="grid">
+        <label>Name<input type="text" id="g-name" required placeholder="e.g. Upstate Mesh CE jacket"></label>
+        <label>Type<select id="g-type">
+          <option>Jacket</option>
+          <option>Helmet</option>
+          <option>Gloves</option>
+          <option>Boots</option>
+          <option>Other</option>
+        </select></label>
+        <label>Brand (optional)<input type="text" id="g-brand" placeholder="e.g. Icon"></label>
+        <label>Size (optional)<input type="text" id="g-size" placeholder="e.g. 52 Regular, 10D, 2XL"></label>
+        <label>Bike<select id="g-bike"></select></label>
+        <label>Cost, $ (optional)<input type="number" id="g-cost" inputmode="decimal" min="0" step="0.01" placeholder="e.g. 179.99"></label>
+        <label>Condition<select id="g-condition">
+          <option>New</option>
+          <option>Like new</option>
+          <option>Used — good</option>
+          <option>Used — worn</option>
+          <option>Retired</option>
+        </select></label>
+        <label>Date bought<input type="date" id="g-date" required></label>
+      </div>
+      <label>Notes<textarea id="g-notes" rows="2" placeholder="e.g. hot-weather riding, Dad's jacket"></textarea></label>
+      <p class="muted">Name is all it takes — the rest is optional. Gear with no cost entered has no value in the totals; the summary says so instead of guessing. A size left blank stays blank — sizes are typed in, never guessed.</p>
+      <button type="submit" class="primary" id="gear-submit">Add gear</button>
+      <button type="button" class="secondary" id="gear-cancel" style="display:none">Cancel edit</button>
+    </form>
+  </section>
+
+  <!-- SUMMARY -->
+  <section id="view-summary" class="view">
+    <h2>Summary</h2>
+    <p class="muted">Value is the cost you typed in, added up. Gear with no cost entered has no value in the totals — the summary counts it as unpriced instead of guessing a price.</p>
+    <label>Bike
+      <select id="summary-bike"></select>
+    </label>
+    <div id="summary-cards"></div>
+  </section>
+
+  <!-- BIKES -->
+  <section id="view-bikes" class="view">
+    <h2>Bikes</h2>
+    <p class="muted">Bikes live in the shared Pocket Garage roster — the same b1/b2/b3 list the other apps use. Add a bike here and it is added to that roster for every app. There is no delete-bike here: roster management belongs to the landing dashboard, so a mistyped bike is removed there, not here.</p>
+    <div id="bikes-list"></div>
+
+    <h3>Add a bike</h3>
+    <form id="bike-form" class="card">
+      <div class="grid">
+        <label>Name<input type="text" id="bike-name" required placeholder="e.g. 1995 Fat Boy"></label>
+        <label>Year<input type="text" id="bike-year" inputmode="numeric" placeholder="1995"></label>
+        <label>Model<input type="text" id="bike-model" placeholder="Fat Boy"></label>
+      </div>
+      <label>Notes<textarea id="bike-notes" rows="2"></textarea></label>
+      <button type="submit" class="primary">Add bike</button>
+    </form>
+  </section>
+
+  <!-- DATA -->
+  <section id="view-data" class="view">
+    <h2>Your data</h2>
+    <p class="muted">No account, no server, no sync. Your gear lives in this browser's local storage. Back it up with Export — one JSON file.</p>
+    <p id="data-counts" class="card"></p>
+    <div class="card">
+      <h3>Export</h3>
+      <p class="muted">The backup is the whole gear locker — every bike, every item. The per-bike export below is one bike's gear, as JSON or readable plain text.</p>
+      <button id="export-btn" class="primary">Download JSON backup</button>
+      <button id="copy-export-btn" class="secondary">Copy JSON to clipboard</button>
+    </div>
+    <div class="card">
+      <h3>Export one bike</h3>
+      <label>Bike<select id="export-bike"></select></label>
+      <button id="export-json-btn" class="primary">Download JSON (this bike)</button>
+      <button id="export-text-btn" class="secondary">Download text (this bike)</button>
+      <button id="copy-text-btn" class="secondary">Copy text</button>
+    </div>
+    <div class="card">
+      <h3>Import</h3>
+      <p class="muted">Import replaces the current gear locker. Export first if you want to keep it. Gear pointing at a bike the shared roster doesn't have yet still loads — it shows under its roster key until that bike is added.</p>
+      <label>From file<input type="file" id="import-file" accept=".json,application/json"></label>
+      <label>Or paste JSON<textarea id="import-text" rows="4"></textarea></label>
+      <button id="import-btn" class="primary">Import gear locker</button>
+    </div>
+    <div class="card">
+      <h3>Try it out</h3>
+      <p class="muted">Loads example gear in the locker so you can see the search, the totals, and what an unpriced item does to the value — before entering your own gear. The example prices are example prices only.</p>
+      <button id="sample-btn" class="secondary">Load example data</button>
+      <button id="clear-btn" class="danger">Delete all gear</button>
+      <p class="muted">Delete clears this app's gear only. The shared bike roster is not touched.</p>
+    </div>
+  </section>
+</main>
+
+<nav class="bottomnav" aria-label="Sections">
+  <button class="navbtn active" data-view="locker">Locker</button>
+  <button class="navbtn" data-view="summary">Summary</button>
+  <button class="navbtn" data-view="bikes">Bikes</button>
+  <button class="navbtn" data-view="data">Data</button>
+</nav>
+
+<div id="toast" class="toast" role="status"></div>
+<script src="sw-update.js"></script>
+<script src="bike-profile.js"></script>
+<script src="app.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('sw.js').catch(function () { /* offline use is optional */ });
+    });
+  }
+</script>
+</body>
+</html>
